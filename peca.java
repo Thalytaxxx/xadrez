@@ -16,6 +16,12 @@ public abstract class Peca {
     public int getX() {
         return x;
     }
+public Peca(int x, int y, Cor cor) {
+    System.out.println("Criando peça em (" + x + ", " + y + ") com cor " + cor);
+    this.x = x;
+    this.y = y;
+    this.cor = cor;
+}
 
     public int getY() {
         return y;
