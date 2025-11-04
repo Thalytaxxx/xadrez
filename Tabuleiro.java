@@ -1,32 +1,22 @@
-public class Tabuleiro {
-    private Peca[][] pecas;
+public abstract class Peca {
+    protected int x;
+    protected int y;
+    protected Cor cor; // enum Cor { BRANCO, PRETO }
 
-    public Tabuleiro() {
-        pecas = new Peca[8][8];
+    public Peca(int x, int y, Cor cor) {
+        this.x = x;
+        this.y = y;
+        this.cor = cor;
     }
 
-    public void adicionarPeca(Peca peca) {
-        pecas[peca.getX()][peca.getY()] = peca;
-    }
+    public int getX() { return x; }
+    public int getY() { return y; }
+    public Cor getCor() { return cor; }
+    public void setPosicao(int x, int y) { this.x = x; this.y = y; }
 
-    public void removerPeca(int x, int y) {
-        pecas[x][y] = null;
-    }
+    // cada peça implementa sua regra, usando o tabuleiro para checar bloqueios
+    public abstract boolean ehMovimentoValido(int novoX, int novoY, Tabuleiro tabuleiro);
 
-    public Peca getPeca(int x, int y) {
-        return pecas[x][y];
-    }
-
-    public void moverPeca(int xAtual, int yAtual, int novoX, int novoY) {
-        Peca peca = getPeca(xAtual, yAtual);
-        if (peca != null && peca.ehMovimentoValido(novoX, novoY)) {
-            removerPeca(xAtual, yAtual);
-            peca = getPecaClasse(peca.getClass(), peca.getCor(), novoX, novoY);
-            adicionarPeca(peca);
-        }
-    }
-
-    private Peca getPecaClasse(Class<? extends Peca> classe, String cor, int x, int y) {
-        // Implementação da lógica para criar uma peça da classe certa
-    }
+    // para toString/debug
+    public abstract String getSimbolo();
 }
