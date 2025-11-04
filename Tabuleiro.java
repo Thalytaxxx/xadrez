@@ -1,22 +1,13 @@
-public abstract class Peca {
-    protected int x;
-    protected int y;
-    protected Cor cor; // enum Cor { BRANCO, PRETO }
-
-    public Peca(int x, int y, Cor cor) {
-        this.x = x;
-        this.y = y;
-        this.cor = cor;
+public void imprimirTabuleiro() {
+    for (int y = 0; y < 8; y++) {
+        for (int x = 0; x < 8; x++) {
+            Peca peca = getPeca(x, y);
+            if (peca != null) {
+                System.out.print(peca.getClass().getSimpleName().substring(0, 1) + " ");
+            } else {
+                System.out.print(". ");
+            }
+        }
+        System.out.println();
     }
-
-    public int getX() { return x; }
-    public int getY() { return y; }
-    public Cor getCor() { return cor; }
-    public void setPosicao(int x, int y) { this.x = x; this.y = y; }
-
-    // cada peça implementa sua regra, usando o tabuleiro para checar bloqueios
-    public abstract boolean ehMovimentoValido(int novoX, int novoY, Tabuleiro tabuleiro);
-
-    // para toString/debug
-    public abstract String getSimbolo();
 }
