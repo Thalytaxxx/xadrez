@@ -1,0 +1,12 @@
+public class Main {
+    public static void main(String[] args) {
+        // Crie uma instância do tabuleiro
+        Tabuleiro tabuleiro = new Tabuleiro();
+
+        // Adicione peças ao tabuleiro
+        // ...
+
+        // Teste a movimentação das peças
+        tabuleiro.moverPeca(1, 2, 3, 4); // Exemplo de movimentação
+    }
+}
